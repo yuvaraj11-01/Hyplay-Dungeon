@@ -3712,14 +3712,16 @@ var IDBFS = {
  reconcile: function(src, dst, callback) {
   var total = 0;
   var create = [];
-  Object.keys(src.entries).forEach(function(key) {
-   var e = src.entries[key];
-   var e2 = dst.entries[key];
-   if (!e2 || e["timestamp"].getTime() != e2["timestamp"].getTime()) {
-    create.push(key);
-    total++;
-   }
-  });
+  if(src.entries != null) {
+   Object.keys(src.entries).forEach(function(key) {
+    var e = src.entries[key];
+    var e2 = dst.entries[key];
+    if (!e2 || e["timestamp"].getTime() != e2["timestamp"].getTime()) {
+     create.push(key);
+     total++;
+    }
+   });
+  }
   var remove = [];
   Object.keys(dst.entries).forEach(function(key) {
    if (!src.entries[key]) {
