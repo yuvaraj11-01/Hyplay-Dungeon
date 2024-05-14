@@ -3004,11 +3004,7 @@ function _LaunchURLWebGL_launchURL(url, windowName, windowFeatures) {
  url = UTF8ToString(url);
  windowName = UTF8ToString(windowName);
  windowFeatures = UTF8ToString(windowFeatures);
- document.documentElement.addEventListener("pointerup", function() {
-  window.open(url, windowName, windowFeatures);
- }, {
-  once: true
- });
+ window.open(url, windowName, windowFeatures);
 }
 
 function ___cxa_allocate_exception() {
