@@ -1175,29 +1175,29 @@ var tempDouble;
 var tempI64;
 
 var ASM_CONSTS = {
- 3287328: function() {
+ 3287344: function() {
   Module["emscripten_get_now_backup"] = performance.now;
  },
- 3287383: function($0) {
+ 3287399: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 3287431: function($0) {
+ 3287447: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 3287479: function() {
+ 3287495: function() {
   performance.now = Module["emscripten_get_now_backup"];
  },
- 3287534: function() {
+ 3287550: function() {
   return Module.webglContextAttributes.premultipliedAlpha;
  },
- 3287595: function() {
+ 3287611: function() {
   return Module.webglContextAttributes.preserveDrawingBuffer;
  },
- 3287659: function() {
+ 3287675: function() {
   return Module.webglContextAttributes.powerPreference;
  }
 };
@@ -3713,16 +3713,14 @@ var IDBFS = {
  reconcile: function(src, dst, callback) {
   var total = 0;
   var create = [];
-  if(src.entries != null) {
-   Object.keys(src.entries).forEach(function(key) {
-    var e = src.entries[key];
-    var e2 = dst.entries[key];
-    if (!e2 || e["timestamp"].getTime() != e2["timestamp"].getTime()) {
-     create.push(key);
-     total++;
-    }
-   });
-  }
+  Object.keys(src.entries).forEach(function(key) {
+   var e = src.entries[key];
+   var e2 = dst.entries[key];
+   if (!e2 || e["timestamp"].getTime() != e2["timestamp"].getTime()) {
+    create.push(key);
+    total++;
+   }
+  });
   var remove = [];
   Object.keys(dst.entries).forEach(function(key) {
    if (!src.entries[key]) {
