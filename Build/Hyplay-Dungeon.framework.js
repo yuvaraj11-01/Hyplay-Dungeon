@@ -1174,29 +1174,29 @@ var tempDouble;
 var tempI64;
 
 var ASM_CONSTS = {
- 2531056: function() {
+ 2531728: function() {
   Module["emscripten_get_now_backup"] = performance.now;
  },
- 2531111: function($0) {
+ 2531783: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 2531159: function($0) {
+ 2531831: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 2531207: function() {
+ 2531879: function() {
   performance.now = Module["emscripten_get_now_backup"];
  },
- 2531262: function() {
+ 2531934: function() {
   return Module.webglContextAttributes.premultipliedAlpha;
  },
- 2531323: function() {
+ 2531995: function() {
   return Module.webglContextAttributes.preserveDrawingBuffer;
  },
- 2531387: function() {
+ 2532059: function() {
   return Module.webglContextAttributes.powerPreference;
  }
 };
@@ -1542,6 +1542,11 @@ function _JS_DOM_UnityCanvasSelector() {
   _JS_DOM_UnityCanvasSelector.selector = canvasSelector;
  }
  return _JS_DOM_UnityCanvasSelector.ptr;
+}
+
+function _JS_Eval_OpenURL(ptr) {
+ var str = UTF8ToString(ptr);
+ window.open(str, "_blank", "");
 }
 
 var fs = {
@@ -2993,6 +2998,17 @@ function _JS_WebRequest_SetTimeout(requestId, timeout) {
   return;
  }
  requestOptions.timeout = timeout;
+}
+
+function _LaunchURLWebGL_launchURL(url, windowName, windowFeatures) {
+ url = UTF8ToString(url);
+ windowName = UTF8ToString(windowName);
+ windowFeatures = UTF8ToString(windowFeatures);
+ document.documentElement.addEventListener("pointerup", function() {
+  window.open(url, windowName, windowFeatures);
+ }, {
+  once: true
+ });
 }
 
 function ___cxa_allocate_exception() {
@@ -12894,6 +12910,7 @@ var asmLibraryArg = {
  "JS_Cursor_SetShow": _JS_Cursor_SetShow,
  "JS_DOM_MapViewportCoordinateToElementLocalCoordinate": _JS_DOM_MapViewportCoordinateToElementLocalCoordinate,
  "JS_DOM_UnityCanvasSelector": _JS_DOM_UnityCanvasSelector,
+ "JS_Eval_OpenURL": _JS_Eval_OpenURL,
  "JS_FileSystem_Initialize": _JS_FileSystem_Initialize,
  "JS_FileSystem_Sync": _JS_FileSystem_Sync,
  "JS_GravitySensor_IsRunning": _JS_GravitySensor_IsRunning,
@@ -12958,6 +12975,7 @@ var asmLibraryArg = {
  "JS_WebRequest_SetRedirectLimit": _JS_WebRequest_SetRedirectLimit,
  "JS_WebRequest_SetRequestHeader": _JS_WebRequest_SetRequestHeader,
  "JS_WebRequest_SetTimeout": _JS_WebRequest_SetTimeout,
+ "LaunchURLWebGL_launchURL": _LaunchURLWebGL_launchURL,
  "__cxa_allocate_exception": ___cxa_allocate_exception,
  "__cxa_atexit": ___cxa_atexit,
  "__cxa_begin_catch": ___cxa_begin_catch,
